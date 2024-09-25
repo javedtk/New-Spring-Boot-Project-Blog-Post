@@ -32,12 +32,21 @@ public class UserController {
         this.deleteUser(uId);
         return new ResponseEntity(Map.of("Message", "User Deleted Successfully"), HttpStatus.OK);
     }
-    @GetMapping("/")
-    public ResponseEntity<List<UserDto>> getAllUser(){
-        return ResponseEntity.ok(this.userServices.getAllUser());
-    }
+//    @GetMapping("/")
+//    public ResponseEntity<List<UserDto>> getAllUser(){
+//        return ResponseEntity.ok(this.userServices.getAllUser());
+//    }
+//    @GetMapping("/{userId}")
+//    public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer uId){
+//        return ResponseEntity.ok(this.userServices.getUserById(uId));
+//    }
+@GetMapping("/")
+public ResponseEntity<List<UserDto>> getAllUser(){
+    return ResponseEntity.ok(this.userServices.getAllUser());
+}
     @GetMapping("/{userId}")
     public ResponseEntity<UserDto> getSingleUser(@PathVariable Integer uId){
         return ResponseEntity.ok(this.userServices.getUserById(uId));
     }
+
 }
