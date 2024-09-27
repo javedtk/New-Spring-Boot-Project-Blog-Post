@@ -5,15 +5,17 @@ import com.ProjectBlogProject.exception.ResourceNotFoundException;
 import com.ProjectBlogProject.playloads.UserDto;
 import com.ProjectBlogProject.repository.UserRepository;
 import com.ProjectBlogProject.services.UserServices;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
+//import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserServices {
     @Autowired
+    private ModelMapper modelMapper;
     private UserRepository userRepository;
     @Override
     public UserDto createUser(UserDto userDto) {
@@ -62,21 +64,21 @@ public class UserServiceImpl implements UserServices {
 
     }
     private User DtoToUser(UserDto userDto){
-        User user = new User();
-        user.setId(userDto.getId());
-        user.setName(userDto.getName());
-        user.setAbout(userDto.getAbout());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        User user = this.modelMapper.map(userDto, User.class);
+//        user.setId(userDto.getId());
+//        user.setName(userDto.getName());
+//        user.setAbout(userDto.getAbout());
+//        user.setEmail(userDto.getEmail());
+//        user.setPassword(userDto.getPassword());
         return user;
     }
     public UserDto userToDto(User user){
-        UserDto userdto = new UserDto();
-        userdto.setId(userdto.getId());
-        userdto.setName(userdto.getName());
-        userdto.setAbout(userdto.getAbout());
-        userdto.setEmail(userdto.getEmail());
-        userdto.setPassword(userdto.getPassword());
+        UserDto userdto = this.modelMapper.map(user, UserDto.class);
+//        userdto.setId(userdto.getId());
+//        userdto.setName(userdto.getName());
+//        userdto.setAbout(userdto.getAbout());
+//        userdto.setEmail(userdto.getEmail());
+//        userdto.setPassword(userdto.getPassword());
         return userdto;
     }
 }
